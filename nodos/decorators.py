@@ -21,6 +21,6 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(req, *args, **kwargs)
             else:
-                return HttpResponse('ya aint suppose to be here ngga')
+                return HttpResponse('No tiene autorizacion para ver esta pagina')
         return wrapper_func
     return decorator
