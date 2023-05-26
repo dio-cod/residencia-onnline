@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content%}
+{%for miembro in miembros%}
+<div class="container">
+<ul>
+<h1>Miembro</h1>
+<p>{{miembro.m_nomb}} {{miembro.m_apellido}}</p>
+<p>{{miembro.m_fkinst}}</p>
+{%if miembro.m_genero == 1 %}
+<p>Sexo Femenino</p>
+{% else %}   
+<p>Sexo Masculino</p>
+{%endif%} 
+<p>Correo: {{miembro.m_correo}}</p>  
+</ul>
+</div>
+{%endfor%}
+{% endblock %}

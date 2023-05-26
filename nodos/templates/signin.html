@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h1>Iniciar Sesión</h1>
+{{error}}
+<form method="POST">
+    {% csrf_token %}
+    <label>Correo</label><br>
+    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="254" required="" id="id_username"><br><br>
+    <label>Contraseña</label><br>
+    <input type="password" name="password" autocomplete="current-password" required="" id="id_password"><br><br>
+    <button>
+        Iniciar Sesión
+    </button>
+</form>
+{% endblock %}
