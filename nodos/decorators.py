@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 def unaunthenticated_user(view_func):
     def wrapper_func(req, *args, **kwargs):
         if req.user.is_authenticated:
-            return redirect('home')
+            return redirect('signin')
         else:
             return view_func(req, *args, **kwargs)
     
