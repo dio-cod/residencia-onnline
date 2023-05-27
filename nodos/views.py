@@ -38,7 +38,7 @@ def signup(request):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('home')
+    return redirect('signin')
 
 
 @login_required
