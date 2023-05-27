@@ -1,0 +1,35 @@
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/landingpage/">Landing Page</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+            <p>{{user.email}}</p>
+        </li>
+        <li>
+            <a href="/miembros/Crear">Registrar Miembro</a>
+        </li>
+        <li>
+            <a href="/miembros/Ver">Ver Miembros</a>
+        </li>
+        <li>
+            <a href="/proyectos/crear">Registrar proyecto</a>
+        </li>
+        <li>
+            <a href="/logout/">Cerrar Sesión</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/signup/">Registrarse</a>
+        </li>
+        <li>
+            <a href="/signin/">Iniciar Sesión</a>
+        </li>
+        {% endif %}
+      
+    </ul>
+</nav>

@@ -10,12 +10,6 @@ from .decorators import allowed_users
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'home.html', {
-        'form': UserCreationForm
-    })
-
-
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {
@@ -34,11 +28,11 @@ def signup(request):
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
-                    'error': 'Username already exists'
+                    'error': 'Ya existe un correo asociado'
                 })
         return render(request, 'signup.html', {
             'form': UserCreationForm,
-            'error': 'Passwords do not match'
+            'error': 'Las contraseñas no coinciden'
         })
 
 @login_required
@@ -62,7 +56,7 @@ def signin(request):
         if user is None:
             return render(request, 'signin.html', {
             'form': AuthenticationForm,
-            'error':'Username or password is incorrect'
+            'error':'El correo o la contraseña son incorrectos'
              })
         else:
             login(request, user)     
