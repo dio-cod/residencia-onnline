@@ -18,10 +18,10 @@ from django.urls import path
 from nodos import views
 
 urlpatterns = [
+    path('', views.signin, name='signin'),
     path('admin/', admin.site.urls),
     path('signup/', views.signup, name='signup'),
     path('logout/', views.signout, name='logout'),
-    path('', views.signin, name='signin'),
     path('landingpage/', views.lp, name='lp'),
     path('proyectos/crear', views.proyecto, name='proyectos'),
     path('miembros/Crear', views.miembrosCreate, name='miembro'),
