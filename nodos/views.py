@@ -94,6 +94,7 @@ def miembrosListar(request):
 @login_required
 @allowed_users(allowed_roles=['Enlaces'])
 def miembrosCreate(request):
+
     if request.method=='GET':
         return render(request, 'miembro.html',{
             'form': MiembrosForm
