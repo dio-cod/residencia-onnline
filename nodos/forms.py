@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import *
 from django import forms
-from django.forms import ModelForm     
+from django.forms import ModelForm, widgets   
 SEX = [
         ("1", "Masculino"),
         ("2", "Femenino"),
@@ -11,7 +11,6 @@ GRADO = [
         ("2", "INGENIERO(A)"),
         ("3", "MAESTRO(A)"),
         ("4", "DOCTOR(A)"),
- 
     ]
 ESTATUS = [
         ("1", "ACTIVO(A)"),
@@ -59,5 +58,22 @@ class MiembrosForm(ModelForm):
     class Meta:
         model = TabMiembro 
         fields =['m_nomb', 'm_app','m_apm' , 'm_curp' , 'm_tel' , 'm_tel2', 'm_correo', 'm_correo2', 'm_cargo', 'm_fechains', 'm_fkinst', 'm_genero', 'm_gradacad','m_estatus', 'm_fktipo']
+        widgets={
+            'm_nomb':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Nombre'}),
+            'm_app':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Apellido Paterno'}),
+            'm_apm':forms.TextInput(attrs={'class':'form-control' , 'placeholder': 'Ingrese el Apellido Materno'}),
+            'm_tel':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Telefono Principal'}),
+            'm_tel2':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Telefono Secundario'}),
+            'm_correo':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Correo Principal'}),
+            'm_correo2':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Correo Secundario'}),
+            'm_cargo':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Cargo de la persona'}),
+            'm_fkinst':forms.Select(attrs={'class':'form-control'}),
+            'm_genero':forms.Select(attrs={'class':'form-control'}),
+            'm_gradacad':forms.Select(attrs={'class':'form-control'}),
+            'm_estatus':forms.Select(attrs={'class':'form-control'}),
+            'm_fktipo':forms.Select(attrs={'class':'form-control'}),
+
+           
+        }
 
 

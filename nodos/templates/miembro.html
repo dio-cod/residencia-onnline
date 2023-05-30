@@ -1,10 +1,97 @@
 {% extends 'base.html' %}
 {% block content%}
-<h1>Registrar nuevo Miembro</h1>
-{{error}}
-<form method="POST">
-    {%csrf_token%}
-    {{form.as_p}}
-    <button>Crear</button>
-</form>
-{% endblock %}
+     <div id="wrapper">
+         {% include "sidebar.html" %}
+         <div id="content-wrapper" class="d-flex flex-column ">
+             {% include "topbar.html" %}
+             <div id="content">
+                    <div class="container-fluid ">
+                <h1 class="h3 mb-2 text-gray-800">Registrar nuevo miembro</h1>
+                        <div class="row">
+                            <div class="col-xl "> 
+                                <form method='POST'>
+                                    {{error}}
+                                 {%csrf_token%}
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Nombre</label>
+                                        {{form.m_nomb}}
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Apellido Paterno</label>
+                                        {{form.m_app}}
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="inputAddress">Apellido Materno</label>
+                                      {{form.m_apm}}                                    
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="inputState">Telefono</label>
+                                          {{form.m_tel}}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="inputZip">Telefono 2</label>
+                                          {{form.m_tel2}}
+                                        </div>
+                                      </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputState">Correo</label>
+                                        {{form.m_correo}}
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputZip">Correo 2</label>
+                                        {{form.m_correo2}}
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="inputState">Cargo</label>
+                                          {{form.m_cargo}}
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                          <label for="inputZip">Fecha de registro</label>
+                                          <input
+                                          type="date"
+                                          class="form-control"
+                                          name="m_fechains"
+                                        >
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputZip">Instituto</label>
+                                            {{form.m_fkinst}}
+                                          </div>
+                                      </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-3">
+                                              <label for="inputState">Genero</label>
+                                              {{form.m_genero}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                              <label for="inputZip">Grado Academico</label>
+                                              {{form.m_gradacad}}
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputZip">Estatus</label>
+                                                {{form.m_estatus}}
+                                              </div>
+                                              <div class="form-group col-md-4">
+                                                <label for="inputZip">Tipo de Miembro</label>
+                                                {{form.m_fktipo}}
+                                              </div>  
+                                          </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Registrar</button>
+                                  </form>
+                            </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </body>
+ 
+ {% endblock %}

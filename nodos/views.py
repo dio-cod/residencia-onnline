@@ -83,7 +83,7 @@ def proyecto(request):
 
 
 @login_required
-@allowed_users(allowed_roles=['Miembro'])        
+@allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
 def miembrosListar(request):
     listaMiembros=TabMiembro.objects.all()
     return render(request, 'miembroslista.html',{
