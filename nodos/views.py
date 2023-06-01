@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -111,3 +111,9 @@ def miembrosCreate(request):
             'form': MiembrosForm,
             'error':'Favor de rellenar todos los campos'
              })
+
+def miembrosProfile(request, id):
+    miembro=get_object_or_404(TabMiembro, m_id=id)
+    return render (request, 'miembrosprof.html', {
+        'miembro':miembro
+    })

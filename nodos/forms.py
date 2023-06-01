@@ -67,7 +67,7 @@ class MiembrosForm(ModelForm):
             'm_correo':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Correo Principal'}),
             'm_correo2':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Correo Secundario'}),
             'm_cargo':forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Ingrese el Cargo de la persona'}),
-            'm_fkinst':forms.Select(attrs={'class':'form-control'}),
+            'm_fkinst':forms.Select(attrs={'class':'form-select'}),
             'm_genero':forms.Select(attrs={'class':'form-control'}),
             'm_gradacad':forms.Select(attrs={'class':'form-control'}),
             'm_estatus':forms.Select(attrs={'class':'form-control'}),

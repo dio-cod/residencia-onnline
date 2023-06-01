@@ -13,19 +13,18 @@
                                     {{error}}
                                  {%csrf_token%}
                                     <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Nombre</label>
-                                        {{form.m_nomb}}
+                                        <div class="form-group col-md-3">
+                                          <label for="inputEmail4">Nombre</label>
+                                          {{form.m_nomb}}                          </div>
+                                        <div class="form-group col-md-4 ">
+                                          <label for="inputPassword4">Apellido Paterno</label>
+                                          {{form.m_app}}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="inputAddress">Apellido Materno</label>
+                                          {{form.m_apm}} 
+                                        </div> 
                                       </div>
-                                      <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Apellido Paterno</label>
-                                        {{form.m_app}}
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="inputAddress">Apellido Materno</label>
-                                      {{form.m_apm}}                                    
-                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                           <label for="inputState">Telefono</label>
@@ -59,9 +58,9 @@
                                           name="m_fechains"
                                         >
                                         </div>
-                                        <div class="form-group col-md-2">
+                                        <div class="form-group col-md-2 ">
                                             <label for="inputZip">Instituto</label>
-                                            {{form.m_fkinst}}
+                                          {{form.m_fkinst}}
                                           </div>
                                       </div>
                                     <div class="form-group">
