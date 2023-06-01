@@ -117,3 +117,12 @@ def miembrosProfile(request, id):
     return render (request, 'miembrosprof.html', {
         'miembro':miembro
     })
+
+@login_required
+@allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
+def proyectoListar(request):
+    listaProyectos=TabProyecto.objects.all()
+    print(listaProyectos)
+    return render(request, 'proyectoslista.html',{
+        'proyectos':listaProyectos
+    })

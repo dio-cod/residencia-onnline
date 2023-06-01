@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content%}
+<body>
+     <div id="wrapper">
+         {% include "sidebar.html" %}
+         <div id="content-wrapper" class="d-flex flex-column ">
+            {% include "topbar.html" %}
+             <div id="content">
+                <div class="col">
+                    <div class="container-fluid ">
+                        <div class='row'>
+                          <div class='col'>
+                            <form class="form-inline">
+                                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </form>
+                            <!-- Topbar Search No funciona aun -->
+                            <form
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light small" placeholder="Buscar"
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                          </div>
+                        </div><br>
+                        <div class="row">
+                            {%for pro in proyectos%}
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-secondary shadow h-100 py-1">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{pro.proy_nomb}} </div><br>
+                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-2"> {{pro.proy_tipo}} </div>
+                                               <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                               <p> {{pro.proy_desc}}</p>  </div>
+                                               <div class="h6 mb-0 font-weight-bold text-gray-800 d-flex">
+                                                <a class=' btn btn-success mr-2' href="{% url 'miembroP' pro.proy_id %}">Ver</a><br>
+                                                <form action= method="POST">
+                                                    {% csrf_token %}
+                                                    <button class=' btn btn-danger'>
+                                                      Eliminar
+                                                    </button>
+                                                  </form>       
+                                            </div>
+                                                 
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                      {%endfor%}
+                </div>
+                 </div>
+                 <!-- /.container-fluid -->
+             </div>
+             <!-- End of Main Content -->
+         </div>
+         <!-- End of Content Wrapper -->
+     </div>
+     <!-- End of Page Wrapper -->
+ </body>
+ 
+ {% endblock %}
