@@ -92,7 +92,7 @@ class TabMiembro(models.Model):
     class Meta:
         db_table = 'tab_miembro' 
     def __str__(self):
-            return self.m_nomb 
+            return self.m_nomb+' '+self.m_app+' '+ self.m_apm
 
 class TabGrupo(models.Model):
     grup_id = models.AutoField(primary_key=True)
@@ -124,7 +124,7 @@ class TabMconsejo(models.Model):
     class Meta:
         db_table = 'tab_mconsejo'
     def __str__(self):
-            return self.mcon_nomb  
+            return self.mcon_nomb+' '+ self.mcon_app +' '+self.mcon_apm
  
 
 class TabProyecto(models.Model):

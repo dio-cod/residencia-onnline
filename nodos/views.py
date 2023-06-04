@@ -84,39 +84,49 @@ def proyecto(request):
 
 @login_required
 @allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
-def miembrosListar(request):
-    listaMiembros=TabMiembro.objects.all()
-    return render(request, 'miembroslista.html',{
-        'miembros':listaMiembros
+def participantesListar(request):
+    listaParticipante=TabMiembro.objects.all()
+    return render(request, 'participantesslista.html',{
+        'miembros':listaParticipante
     })
 
 
 @login_required
 @allowed_users(allowed_roles=['Enlaces'])
-def miembrosCreate(request):
+def participantesCreate(request):
 
     if request.method=='GET':
-        return render(request, 'miembro.html',{
-            'form': MiembrosForm
+        return render(request, 'nuevoParticipante.html',{
+            'form': ParticipanteForm
         })
     else:
-         form=MiembrosForm(request.POST)
+         form=ParticipanteForm(request.POST)
          print(request.POST)
          if form.is_valid():
             new_miembro=form.save(commit=False)
             new_miembro.save()
             return redirect ('lp')
          else:
-             return render(request, 'miembro.html', {
-            'form': MiembrosForm,
+             return render(request, 'participante.html', {
+            'form': ParticipanteForm,
             'error':'Favor de rellenar todos los campos'
              })
 
-def miembrosProfile(request, id):
-    miembro=get_object_or_404(TabMiembro, m_id=id)
-    return render (request, 'miembrosprof.html', {
-        'miembro':miembro
+@login_required
+@allowed_users(allowed_roles=['Enlaces'])
+def participantesProfile(request, id):
+  if request.method=='GET':
+    participante=get_object_or_404(TabMiembro, m_id=id)
+    form= ParticipanteForm(instance=participante) 
+    return render (request, 'participantesprof.html', {
+        'participante':participante,
+        'form':form
     })
+  else:
+      participante=get_object_or_404(TabMiembro, m_id=id)
+      form=ParticipanteForm(request.POST, instance=participante)
+      form.save()
+      return redirect('participantesL')
 
 @login_required
 @allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
@@ -126,3 +136,19 @@ def proyectoListar(request):
     return render(request, 'proyectoslista.html',{
         'proyectos':listaProyectos
     })
+
+@login_required
+@allowed_users(allowed_roles=['Enlaces'])
+def proyectoProfile(request, id):
+  if request.method=='GET':
+    proyecto=get_object_or_404(TabProyecto, proy_id=id)
+    form= proyectoform(instance=proyecto) 
+    return render (request, 'proyectoprof.html', {
+        'proyecto':proyecto,
+        'form':form
+    })
+  else:
+      proyecto=get_object_or_404(TabProyecto, proy_id=id)
+      form=proyectoform(request.POST, instance=proyecto)
+      form.save()
+      return redirect('proyectoL')

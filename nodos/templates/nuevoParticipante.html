@@ -6,7 +6,7 @@
              {% include "topbar.html" %}
              <div id="content">
                     <div class="container-fluid ">
-                <h1 class="h3 mb-2 text-gray-800">Registrar nuevo miembro</h1>
+                <h1 class="h3 mb-2 text-gray-800">Registrar nuevo participante</h1>
                         <div class="row">
                             <div class="col-xl "> 
                                 <form method='POST'>
@@ -52,11 +52,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                           <label for="inputZip">Fecha de registro</label>
-                                          <input
-                                          type="date"
-                                          class="form-control"
-                                          name="m_fechains"
-                                        >
+                                          {{form.m_fechains}}
                                         </div>
                                         <div class="form-group col-md-2 ">
                                             <label for="inputZip">Instituto</label>
@@ -78,7 +74,7 @@
                                                 {{form.m_estatus}}
                                               </div>
                                               <div class="form-group col-md-4">
-                                                <label for="inputZip">Tipo de Miembro</label>
+                                                <label for="inputZip">Tipo de participante</label>
                                                 {{form.m_fktipo}}
                                               </div>  
                                           </div>
