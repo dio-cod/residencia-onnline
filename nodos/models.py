@@ -51,8 +51,7 @@ class TabDescproyec(models.Model):
 
     class Meta:
         db_table = 'tab_descproyec'
-
-
+   
 class TabDescreunion(models.Model):
     desr_id = models.AutoField(primary_key=True)
     desr_fkmiem = models.ForeignKey('TabMiembro', models.DO_NOTHING, db_column='desr_fkmiem')

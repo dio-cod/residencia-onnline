@@ -61,6 +61,53 @@ def signin(request):
         else:
             login(request, user)     
         return redirect('lp')
+
+#Participantes
+@login_required
+@allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
+def participantesListar(request):
+    listaParticipante=TabMiembro.objects.all()
+    return render(request, 'participantesslista.html',{
+        'miembros':listaParticipante
+    })
+
+@login_required
+@allowed_users(allowed_roles=['Enlaces'])
+def participantesCreate(request):
+    if request.method=='GET':
+        return render(request, 'nuevoParticipante.html',{
+            'form': ParticipanteForm
+        })
+    else:
+         form=ParticipanteForm(request.POST)
+         print(request.POST)
+         if form.is_valid():
+            new_miembro=form.save(commit=False)
+            new_miembro.save()
+            return redirect ('participantesL')
+         else:
+             return render(request, 'participante.html', {
+            'form': ParticipanteForm,
+            'error':'Favor de rellenar todos los campos'
+             })
+
+@login_required
+@allowed_users(allowed_roles=['Enlaces'])
+def participantesProfile(request, id):
+  if request.method=='GET':
+    participante=get_object_or_404(TabMiembro, m_id=id)
+    form= ParticipanteForm(instance=participante) 
+    return render (request, 'participantesprof.html', {
+        'participante':participante,
+        'form':form
+    })
+  else:
+      participante=get_object_or_404(TabMiembro, m_id=id)
+      form=ParticipanteForm(request.POST, instance=participante)
+      form.save()
+      return redirect('participantesL')
+
+#Proyecto
     
 @login_required
 @allowed_users(allowed_roles=['Enlaces']) 
@@ -84,55 +131,8 @@ def proyecto(request):
 
 @login_required
 @allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
-def participantesListar(request):
-    listaParticipante=TabMiembro.objects.all()
-    return render(request, 'participantesslista.html',{
-        'miembros':listaParticipante
-    })
-
-
-@login_required
-@allowed_users(allowed_roles=['Enlaces'])
-def participantesCreate(request):
-
-    if request.method=='GET':
-        return render(request, 'nuevoParticipante.html',{
-            'form': ParticipanteForm
-        })
-    else:
-         form=ParticipanteForm(request.POST)
-         print(request.POST)
-         if form.is_valid():
-            new_miembro=form.save(commit=False)
-            new_miembro.save()
-            return redirect ('lp')
-         else:
-             return render(request, 'participante.html', {
-            'form': ParticipanteForm,
-            'error':'Favor de rellenar todos los campos'
-             })
-
-@login_required
-@allowed_users(allowed_roles=['Enlaces'])
-def participantesProfile(request, id):
-  if request.method=='GET':
-    participante=get_object_or_404(TabMiembro, m_id=id)
-    form= ParticipanteForm(instance=participante) 
-    return render (request, 'participantesprof.html', {
-        'participante':participante,
-        'form':form
-    })
-  else:
-      participante=get_object_or_404(TabMiembro, m_id=id)
-      form=ParticipanteForm(request.POST, instance=participante)
-      form.save()
-      return redirect('participantesL')
-
-@login_required
-@allowed_users(allowed_roles=['Miembro', 'Enlaces'])        
 def proyectoListar(request):
     listaProyectos=TabProyecto.objects.all()
-    print(listaProyectos)
     return render(request, 'proyectoslista.html',{
         'proyectos':listaProyectos
     })
@@ -142,13 +142,30 @@ def proyectoListar(request):
 def proyectoProfile(request, id):
   if request.method=='GET':
     proyecto=get_object_or_404(TabProyecto, proy_id=id)
-    form= proyectoform(instance=proyecto) 
+    details= TabDescproyec.objects.filter(dn_fknodo=id)
+    form=proyectoform(instance=proyecto) 
+    
     return render (request, 'proyectoprof.html', {
-        'proyecto':proyecto,
-        'form':form
+        'form':form,
+        'form2':desc_proyectoform,
+        'details':details
     })
   else:
       proyecto=get_object_or_404(TabProyecto, proy_id=id)
       form=proyectoform(request.POST, instance=proyecto)
       form.save()
       return redirect('proyectoL')
+
+
+#Miembros de la red
+@login_required
+def miembrosListar(request):
+    miembros=TabDependencia.objects.all()
+    return render(request,'miembroslista.html',{
+        'miembros':miembros
+    })
+
+
+@login_required
+def miembrosCreate(request):
+    return 

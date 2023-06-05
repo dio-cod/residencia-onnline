@@ -24,10 +24,12 @@ urlpatterns = [
     path('logout/', views.signout, name='logout'),
     path('landingpage/', views.lp, name='lp'),
     path('proyectos/crear', views.proyecto, name='proyectos'),
+    path('proyectos/Ver', views.proyectoListar, name='proyectoL'),
+    path('proyecto/<int:id>', views.proyectoProfile, name='proyectoP'),
     path('participantes/Crear', views.participantesCreate, name='participantes'),
     path('participantes/Ver', views.participantesListar, name='participantesL'),
-    path('proyectos/Ver', views.proyectoListar, name='proyectoL'),
     path('participantes/<int:id>', views.participantesProfile, name='participantesP'),
-    path('proyecto/<int:id>', views.proyectoProfile, name='proyectoP'),
+    path('miembros/Crear', views.miembrosCreate, name='miembros'),
+    path('miembros/Ver', views.miembrosListar, name='miembrosL'),
     
 ]

@@ -75,4 +75,16 @@ class ParticipanteForm(ModelForm):
             'm_fktipo':forms.Select(attrs={'class':'form-control'}),
         }
 
+class desc_proyectoform(ModelForm):
+    dn_fkestatus=forms.ModelChoiceField(queryset=TabEstatus.objects.distinct(), required=True).widget_attrs
+    dn_fkmiemb= forms.ModelChoiceField(queryset=TabMiembro.objects.distinct(), required=True).widget_attrs
+    class Meta:
+        model =TabDescproyec
+        fields = '__all__'
+        widgets={
+            'dn_fkestatus':forms.Select(attrs={'class':'form-control'},),
+            'dn_fkmiemb':forms.Select(attrs={'class':'form-control'}),
+        }
+
+
 
