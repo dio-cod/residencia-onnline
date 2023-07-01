@@ -31,20 +31,33 @@
                           </div>
                         </div><br>
                         <div class="row">
-                            {%for pro in miembros%}
+                            {%for miembro in miembros%}
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-1">
+                                <div class="card border-left-primary shadow h-100 py-1">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    {{pro.dep_nomb}} </div><br>
-                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-2"> {{pro.dep_siglas}}</div>
+                                                {%if miembro.m_gradacad == 1 %}<div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    Lic. {{miembro.m_nomb}} {{miembro.m_app}} {{miembro.m_apm}}</div><br>
+                                                {% elif miembro.m_gradacad == 2 %}   <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    Ing. {{miembro.m_nomb}} {{miembro.m_app}} {{miembro.m_apm}}</div><br>
+                                                {% elif miembro.m_gradacad == 3 %}   <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    Mtro(a). {{miembro.m_nomb}} {{miembro.m_app}} {{miembro.m_apm}}</div><br>
+                                                {% else%}   <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    Dr(a). {{miembro.m_nomb}} {{miembro.m_app}} {{miembro.m_apm}}</div><br>
+                                                {%endif%} 
+                                                
+                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-2">{{miembro.m_fkinst}}</div>
+                                                {%if miembro.m_genero == 1 %}
+                                               <div class="h6 mb-0 font-weight-bold text-gray-800">Sexo Masculino</div>
+                                               {% else %}   
+                                               <div class="h6 mb-0 font-weight-bold text-gray-800">Sexo Femenino</div>
+                                               {%endif%} 
                                                <div class="h6 mb-0 font-weight-bold text-gray-800">
-                                               <p>{{pro.dep_direccon}}, {{pro.dep_localidad}} </p> </div>
+                                               <p>Correo: {{miembro.m_correo}}</p>  </div>
                                                <div class="h6 mb-0 font-weight-bold text-gray-800 d-flex">
-                                                <a class=' btn btn-success mr-2' href="">Ver</a><br>
+                                                <a class=' btn btn-success mr-2' href="{% url 'miembroP' miembro.m_id %}">Ver</a><br>
                                                 <form action= method="POST">
                                                     {% csrf_token %}
                                                     <button class=' btn btn-danger'>
@@ -58,6 +71,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                       {%endfor%}
                 </div>
                  </div>

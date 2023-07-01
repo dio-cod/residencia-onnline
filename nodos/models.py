@@ -51,7 +51,8 @@ class TabDescproyec(models.Model):
 
     class Meta:
         db_table = 'tab_descproyec'
-   
+
+
 class TabDescreunion(models.Model):
     desr_id = models.AutoField(primary_key=True)
     desr_fkmiem = models.ForeignKey('TabMiembro', models.DO_NOTHING, db_column='desr_fkmiem')
@@ -91,7 +92,7 @@ class TabMiembro(models.Model):
     class Meta:
         db_table = 'tab_miembro' 
     def __str__(self):
-            return self.m_nomb+' '+self.m_app+' '+ self.m_apm
+            return self.m_nomb 
 
 class TabGrupo(models.Model):
     grup_id = models.AutoField(primary_key=True)
@@ -123,7 +124,7 @@ class TabMconsejo(models.Model):
     class Meta:
         db_table = 'tab_mconsejo'
     def __str__(self):
-            return self.mcon_nomb+' '+ self.mcon_app +' '+self.mcon_apm
+            return self.mcon_nomb  
  
 
 class TabProyecto(models.Model):
