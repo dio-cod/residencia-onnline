@@ -32,7 +32,7 @@ class TabAcuerdoreunion(models.Model):
 
 class TabDescgrupo(models.Model):
     dg_id = models.AutoField(primary_key=True)
-    dg_fkgrupo = models.ForeignKey('TabGrupo', models.DO_NOTHING, db_column='dg_fkgrupo')
+    dg_fkgrupo = models.ForeignKey('TabGrupo', models.DO_NOTHING, db_column='dg_fkgrupo', default=1)
     dg_fkmiemb = models.ForeignKey('TabMiembro', models.DO_NOTHING, db_column='dg_fkmiemb')
  
     class Meta:
@@ -143,22 +143,22 @@ class TabProyecto(models.Model):
     proy_desc = models.TextField()
     proy_fechini = models.DateField()
     proy_fechfin = models.DateField()
-    proy_estatus = models.ForeignKey('TabEstatus', models.DO_NOTHING, db_column='dp_fkestatus')
+    proy_estatus = models.ForeignKey('TabEstatus', models.DO_NOTHING, db_column='dp_fkestatus', default=1)
     proy_coord = models.ForeignKey(TabMconsejo, models.DO_NOTHING, db_column='proy_coord')
     proy_miemb = models.ManyToManyField(TabMiembro, through="TabProyectoProyMiemb")
+
     class Meta:
         managed = True
         db_table = 'tab_proyecto'
     def __str__(self):
         return self.proy_nomb
-
 class TabProyectoProyMiemb(models.Model):
     id = models.BigAutoField(primary_key=True)
-    tabproyecto = models.ForeignKey(TabProyecto, models.DO_NOTHING)
-    tabmiembro = models.ForeignKey(TabMiembro, models.DO_NOTHING)
+    tabproyecto = models.ForeignKey(TabProyecto, models.DO_NOTHING, default=1)
+    tabmiembro = models.ForeignKey(TabMiembro, models.DO_NOTHING, default=1)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tab_proyecto_proy_miemb'
         unique_together = (('tabproyecto', 'tabmiembro'),)
 
