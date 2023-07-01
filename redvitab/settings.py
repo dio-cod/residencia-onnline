@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'redvitab.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'redvitab1',
+        'NAME': 'redvitab2',
         'USER':'root',
         'PASSWORD':'1234',
         'HOST':'localhost',

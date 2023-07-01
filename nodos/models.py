@@ -85,8 +85,8 @@ class TabInstitucion(models.Model):
     ins_localidad = models.CharField(max_length=50)
     ins_tel = models.CharField(max_length=10)
     ins_correo = models.CharField(max_length=100)
-    ins_fktipo = models.ForeignKey('TabTipodependencia', models.DO_NOTHING, db_column='ins_fktipo', null=True)
-    ins_fkenlace = models.ForeignKey('TabMiembro', models.DO_NOTHING, db_column='ins_fkenlace', blank=True, null=True)
+    ins_fktipo = models.ForeignKey('TabTipodependencia', on_delete=models.SET_NULL, db_column='ins_fktipo', null=True)
+    ins_fkenlace = models.ForeignKey('TabMiembro',on_delete=models.SET_NULL, db_column='ins_fkenlace', blank=True, null=True)
     ins_subcat = models.CharField(max_length=155)
 
     class Meta:
@@ -145,7 +145,7 @@ class TabProyecto(models.Model):
     proy_fechfin = models.DateField()
     proy_estatus = models.ForeignKey('TabEstatus', models.DO_NOTHING, db_column='dp_fkestatus', default=1)
     proy_coord = models.ForeignKey(TabMconsejo, models.DO_NOTHING, db_column='proy_coord')
-    proy_miemb = models.ManyToManyField(TabMiembro, through="TabProyectoProyMiemb")
+    proy_miemb = models.ManyToManyField(TabMiembro, through="TabProyectoProyMiemb" )
 
     class Meta:
         managed = True
