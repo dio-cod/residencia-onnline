@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+     <div id="wrapper">
+         {% include "sidebar.html" %}
+         <div id="content-wrapper" class="d-flex flex-column ">
+             {% include "topbar.html" %}
+             <div id="content">
+                    <div class="container-fluid ">
+                <h1 class="h3 mb-2 text-gray-800">Datos del proyecto</h1>
+                        <div class="row">
+                            <div class="col-xl "> 
+                                <form method='POST'>
+                                    {{error}}
+                                 {%csrf_token%}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <label>Nombre del Proyecto</label>
+                                          {{form.proy_nomb}}                          </div>
+                                        <div class="form-group col-md-4 ">
+                                          <label>Tipo de Proyecto</label>
+                                          {{form.proy_tipo}}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label >Descripción</label>
+                                          {{form.proy_desc}} 
+                                        </div> 
+                                      </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label >Fecha de inicio</label>
+                                          {{form.proy_fechini}}
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label >Fecha de terminación</label>
+                                          {{form.proy_fechfin}}
+                                          </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label>Estatus</label>
+                                          {{form.proy_estatus}}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label>Coordinador</label>
+                                          {{form.proy_coord}}
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label>Miembros</label>
+                                          {{form.proy_miemb}}
+                                        </div>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                    <a class=' btn btn-success mr-2' href="/participantes/Ver">Regresar</a><br>
+                                  </form>
+                            </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </body>
+ {% endblock %}

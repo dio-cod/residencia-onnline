@@ -83,6 +83,29 @@
                                     <a class=' btn btn-success mr-2' href="/participantes/Ver">Regresar</a><br>
                                   </form>
                             </div>
+                            <div class="table-responsive">
+                              <br><h1 class="h3 mb-2 text-gray-800">Proyectos en los que participa</h1>
+                              <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                                <thead>
+                                           <tr>
+                                          <th>Nombre del Proyecto</th>
+                                          <th>Estado</th>
+                                          <th>Acciones</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% for partic in par%}
+                                      <tr>
+                                          <td>{{partic.proy_nomb}}</td>
+                                          <td>{{partic.proy_estatus}}</td>
+                                          <td><a class=' btn btn-success mr-2' href="/proyecto/{{partic.proy_id}}"><i class="fas fa-fw fa-solid fa-eye"></i></a><!-- NO FUNCIONA-->  
+                                          </td>    
+                                          {% endfor %}
+                                          <div class="newData"></div>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                            </div>
                      </div>
                  </div>
              </div>

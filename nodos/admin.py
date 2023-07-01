@@ -28,14 +28,20 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
+class ProyectoinLine(admin.TabularInline):
+    model= TabProyecto.proy_miemb.through
+
+@admin.register(TabProyecto)
+class Proyecto (admin.ModelAdmin):
+    inlines=[ProyectoinLine]
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
-admin.site.register(TabDependencia)
+admin.site.register(TabProyectoProyMiemb)
+
+admin.site.register(TabInstitucion)
 
 admin.site.register(TabDescgrupo)
-
-admin.site.register(TabDescproyec)
 
 admin.site.register(TabDescreunion)
 
@@ -47,9 +53,7 @@ admin.site.register(TabMiembro)
 
 admin.site.register(TabMconsejo)
 
-admin.site.register(TabProyecto)
-
-admin.site.register(TabReuniong)
+admin.site.register(TabReunion)
 
 admin.site.register(TabTiporeunion)
 

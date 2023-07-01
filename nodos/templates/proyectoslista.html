@@ -5,6 +5,7 @@
          {% include "sidebar.html" %}
          <div id="content-wrapper" class="d-flex flex-column ">
             {% include "topbar.html" %}
+           
              <div id="content">
                 <div class="col">
                     <div class="container-fluid ">
@@ -29,7 +30,15 @@
                                 </div>
                             </form>
                           </div>
-                        </div><br>
+                        </div><br><div class="col-lg-6 mb-4">
+                            {% if msg %}
+                            <div class="card bg-primary text-white shadow">
+                                <div class="card-body">
+                                    <div class="text-white-100 medium">{{msg}}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
                         <div class="row">
                             {%for pro in proyectos%}
                             <!-- Earnings (Monthly) Card Example -->
@@ -44,12 +53,10 @@
                                                <div class="h6 mb-0 font-weight-bold text-gray-800">
                                                <p> {{pro.proy_desc}}</p>  </div>
                                                <div class="h6 mb-0 font-weight-bold text-gray-800 d-flex">
-                                                <a class=' btn btn-success mr-2' href="{% url 'miembroP' pro.proy_id %}">Ver</a><br>
+                                                <a class=' btn btn-success mr-2' href="{% url 'proyectoP' pro.proy_id %}">Ver</a><br>
                                                 <form action= method="POST">
                                                     {% csrf_token %}
-                                                    <button class=' btn btn-danger'>
-                                                      Eliminar
-                                                    </button>
+                                                        <a class=' btn btn-danger mr-2' href="{% url 'proyectoD' pro.proy_id %}">Eliminar</a><br>
                                                   </form>       
                                             </div>
                                                  
